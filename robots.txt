@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /config/
+Disallow: /install.php
+
+Sitemap: https://www.tomografimarket.com/sitemap.php

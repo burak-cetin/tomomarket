@@ -1,0 +1,71 @@
+Options -Indexes
+Options +FollowSymLinks
+RewriteEngine On
+
+# ── HTTPS yönlendirmesi ───────────────────────────────
+# RewriteCond %{HTTPS} off
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ── www yönlendirmesi ─────────────────────────────────
+# RewriteCond %{HTTP_HOST} !^www\. [NC]
+# RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ── Blog yazıları: /blog/slug.php → _post.php?slug=slug ──
+RewriteCond %{REQUEST_URI} ^/blog/([a-z0-9\-]+)\.php$
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^blog/([a-z0-9\-]+)\.php$ blog/_post.php?slug=$1 [L,QSA]
+
+# ── Marka sayfaları: /markalar/vatech-tomografi.php → _brand_page.php?brand=vatech ──
+RewriteCond %{REQUEST_URI} ^/markalar/([a-z0-9\-]+)-tomografi\.php$
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^markalar/([a-z0-9\-]+)-tomografi\.php$ markalar/_brand_page.php?brand=$1 [L,QSA]
+
+# ── Ürün detay: /urunler/slug-detay.php → _product_detail.php?slug=slug ──
+RewriteCond %{REQUEST_URI} ^/urunler/([a-z0-9\-]+)-detay\.php$
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^urunler/([a-z0-9\-]+)-detay\.php$ urunler/_product_detail.php?slug=$1 [L,QSA]
+
+# ── PHP dosyalarını gizle (opsiyonel temiz URL) ───────
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteCond %{REQUEST_FILENAME}.php -f
+# RewriteRule ^(.*)$ $1.php [L]
+
+# ── Güvenlik başlıkları ───────────────────────────────
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set X-XSS-Protection "1; mode=block"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# ── Gzip sıkıştırma ───────────────────────────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json image/svg+xml
+</IfModule>
+
+# ── Tarayıcı önbelleği ────────────────────────────────
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType image/png "access plus 6 months"
+  ExpiresByType image/jpeg "access plus 6 months"
+  ExpiresByType image/gif "access plus 6 months"
+  ExpiresByType image/webp "access plus 6 months"
+  ExpiresByType image/svg+xml "access plus 6 months"
+  ExpiresByType application/pdf "access plus 1 month"
+</IfModule>
+
+<FilesMatch "^(config|install|composer)\.(php|json|lock)$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+
+# config/ dizinini tamamen koru
+<IfModule mod_rewrite.c>
+  RewriteRule ^config/ - [F,L]
+</IfModule>
+
+# ── Hata sayfaları ────────────────────────────────────
+ErrorDocument 404 /404.php
+ErrorDocument 500 /500.php
