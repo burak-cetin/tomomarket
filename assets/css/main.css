@@ -325,6 +325,11 @@ footer{background:#1e293b;color:#94a3b8;padding:4rem 5% 2rem}
   .products-grid{grid-template-columns:1fr}
   .brands-grid{grid-template-columns:repeat(3,1fr)}
   .admin-layout{grid-template-columns:1fr}
+  .admin-sidebar{display:none;position:fixed;top:0;left:0;width:240px;height:100vh;z-index:9999}
+  .admin-sidebar.active{display:block}
+  .admin-main{padding:1.5rem 1rem}
+  .blog-grid{grid-template-columns:1fr}
+  .second-hand-grid{grid-template-columns:1fr}
   .footer-container{grid-template-columns:1fr}
 }
 @media(max-width:480px){

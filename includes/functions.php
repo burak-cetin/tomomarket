@@ -96,6 +96,11 @@ function renderSeoHead(string $title, string $desc = '', string $keywords = '', 
     echo '<meta name="twitter:title" content="' . h($title) . '">' . "\n";
     echo '<meta name="twitter:description" content="' . h($desc) . '">' . "\n";
     echo '<meta name="twitter:image" content="' . h($ogImage) . '">' . "\n";
+    echo '<link rel="alternate" hreflang="tr" href="' . h($canonical) . '">' . "\n";
+    echo '<link rel="alternate" hreflang="x-default" href="' . h($canonical) . '">' . "\n";
+    echo '<meta name="geo.region" content="TR">' . "\n";
+    echo '<meta name="geo.placename" content="Turkey">' . "\n";
+    echo '<meta name="language" content="Turkish">' . "\n";
 }
 
 function renderOrganizationSchema(): void {
@@ -156,6 +161,35 @@ function renderFAQSchema(array $faqs): void {
         '@type'      => 'FAQPage',
         'mainEntity' => $items,
     ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . '</script>' . "\n";
+}
+
+// ── Görsel Çözümleme ─────────────────────────────────────
+function resolveImage(string $path): string {
+    if (!$path) return '';
+    $basePath = dirname(__DIR__);
+    $fullPath = $basePath . '/' . $path;
+    if (file_exists($fullPath)) return $path;
+
+    $info = pathinfo($path);
+    $exts = ['png', 'jpg', 'jpeg', 'webp'];
+    foreach ($exts as $ext) {
+        $alt = $info['dirname'] . '/' . $info['filename'] . '.' . $ext;
+        if (file_exists($basePath . '/' . $alt)) return $alt;
+    }
+
+    $dir = $basePath . '/' . $info['dirname'];
+    if (is_dir($dir)) {
+        $target = strtolower(str_replace(['_', ' '], '-', $info['filename']));
+        foreach (scandir($dir) as $file) {
+            if ($file === '.' || $file === '..') continue;
+            $fileBase = strtolower(str_replace(['_', ' '], '-', pathinfo($file, PATHINFO_FILENAME)));
+            if ($target === $fileBase) {
+                return $info['dirname'] . '/' . $file;
+            }
+        }
+    }
+
+    return $path;
 }
 
 // ── Yardımcılar ───────────────────────────────────────────

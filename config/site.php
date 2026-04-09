@@ -5,7 +5,16 @@
 
 define('SITE_NAME',    'TomografiMarket');
 define('SITE_TAGLINE', 'Dental Görüntüleme Çözümleri');
-define('SITE_URL',     'http://localhost/tomomarket_php');  // Trailing slash yok
+// Domain otomatik algilama
+$_protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+$_host     = $_SERVER['HTTP_HOST'] ?? 'tomografimarket.com';
+$_basePath = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
+// Production domain sabit
+if (strpos($_host, 'tomografimarket.com') !== false) {
+    define('SITE_URL', 'https://tomografimarket.com');
+} else {
+    define('SITE_URL', $_protocol . '://' . $_host);
+}
 define('SITE_EMAIL',   'info@tomografimarket.com');
 define('SITE_PHONE1',  '+908503037893');
 define('SITE_PHONE2',  '+905057737803');

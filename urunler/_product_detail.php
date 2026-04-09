@@ -54,7 +54,7 @@ require __DIR__ . '/../includes/header.php';
 <section class="product-hero">
   <div class="product-hero-container">
     <div class="product-image-section">
-      <img src="../<?= h($p['image']) ?>" alt="<?= h($p['brand_name']) ?> <?= h($p['name']) ?> Dental Tomografi Cihazı" width="400">
+      <img src="../<?= h(resolveImage($p['image'])) ?>" alt="<?= h($p['brand_name']) ?> <?= h($p['name']) ?> Dental Tomografi Cihazı" width="400">
     </div>
     <div class="product-info-section">
       <span class="product-brand"><?= h($p['brand_name']) ?></span>
@@ -142,7 +142,7 @@ require __DIR__ . '/../includes/header.php';
     <div class="product-card">
       <a href="<?= h($r['slug']) ?>-detay.php" class="product-image-link">
         <div class="product-image-container">
-          <img src="../<?= h($r['image']) ?>" alt="<?= h($r['brand_name']) ?> <?= h($r['name']) ?>" loading="lazy">
+          <img src="../<?= h(resolveImage($r['image'])) ?>" alt="<?= h($r['brand_name']) ?> <?= h($r['name']) ?>" loading="lazy">
         </div>
       </a>
       <div class="product-content">

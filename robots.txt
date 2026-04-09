@@ -1,8 +1,20 @@
 User-agent: *
 Allow: /
+
+# Admin ve ozel dizinler
 Disallow: /admin/
 Disallow: /api/
 Disallow: /config/
+Disallow: /database/
+Disallow: /includes/
 Disallow: /install.php
 
-Sitemap: https://www.tomografimarket.com/sitemap.php
+# Parametre iceren sayfalar
+Disallow: /*?action=
+Disallow: /*?page=
+
+# Arama motorlari icin sitemap
+Sitemap: https://tomografimarket.com/sitemap.php
+
+# Crawl hizi
+Crawl-delay: 1
