@@ -68,7 +68,7 @@ require __DIR__ . '/../includes/header.php';
 <section class="brand-header">
   <div class="brand-header-container">
     <div class="brand-logo-box">
-      <img src="../<?= h($brand['logo']) ?>" alt="<?= h($brand['name']) ?> Logo" width="160" height="80">
+      <img src="../<?= h(resolveImage($brand['logo'])) ?>" alt="<?= h($brand['name']) ?> Logo" width="160" height="80">
     </div>
     <div class="brand-info">
       <?php if ($brand['origin']): ?>
@@ -103,7 +103,7 @@ require __DIR__ . '/../includes/header.php';
           <?php if ($p['badge']): ?>
           <span class="product-badge badge-<?= h($p['badge_type']) ?>"><?= h($p['badge']) ?></span>
           <?php endif; ?>
-          <img src="../<?= h($p['image']) ?>" alt="<?= h($brand['name']) ?> <?= h($p['name']) ?> Dental Tomografi Cihazı" loading="lazy">
+          <img src="../<?= h(resolveImage($p['image'])) ?>" alt="<?= h($brand['name']) ?> <?= h($p['name']) ?> Dental Tomografi Cihazı" loading="lazy">
         </div>
       </a>
       <div class="product-content">

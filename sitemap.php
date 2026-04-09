@@ -84,4 +84,16 @@ $now = date('Y-m-d');
   </url>
   <?php endforeach; ?>
 
+  <!-- Statik Sayfalar -->
+  <url>
+    <loc><?= SITE_URL ?>/sayfalar/gizlilik.php</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc><?= SITE_URL ?>/sayfalar/kvkk.php</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
 </urlset>

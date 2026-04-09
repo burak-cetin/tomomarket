@@ -6,6 +6,10 @@ function adminActive(string $file): string {
     return ($currentFile === $file) ? ' active' : '';
 }
 ?>
+<!-- Mobile toggle for admin -->
+<button class="admin-sidebar-toggle" onclick="document.querySelector('.admin-sidebar').classList.toggle('active')" style="display:none;position:fixed;top:1rem;left:1rem;z-index:10000;background:#1e293b;color:#fff;border:none;border-radius:8px;padding:.5rem .75rem;cursor:pointer;font-size:1.2rem">☰</button>
+<style>@media(max-width:768px){.admin-sidebar-toggle{display:block!important}}</style>
+
 <nav class="admin-sidebar">
   <div class="logo">TomografiMarket<br><span style="font-size:.75rem;color:#94a3b8;font-weight:400">Admin Panel</span></div>
   <div class="admin-menu">

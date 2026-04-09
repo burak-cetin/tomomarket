@@ -70,7 +70,7 @@ require __DIR__ . '/includes/header.php';
   <div class="brands-grid">
     <?php foreach ($brands as $b): ?>
     <a href="markalar/<?= h($b['slug']) ?>-tomografi.php" class="brand-card" title="<?= h($b['name']) ?> Dental Tomografi Cihazları">
-      <img src="<?= h($b['logo']) ?>" alt="<?= h($b['name']) ?> Logo" loading="lazy">
+      <img src="<?= h(resolveImage($b['logo'])) ?>" alt="<?= h($b['name']) ?> Logo" loading="lazy">
     </a>
     <?php endforeach; ?>
   </div>
@@ -108,7 +108,7 @@ require __DIR__ . '/includes/header.php';
           <?php if ($p['badge']): ?>
           <span class="product-badge badge-<?= h($p['badge_type']) ?>"><?= h($p['badge']) ?></span>
           <?php endif; ?>
-          <img src="<?= h($p['image']) ?>" alt="<?= h($p['brand_name']) ?> <?= h($p['name']) ?> Dental Tomografi Cihazı" loading="lazy">
+          <img src="<?= h(resolveImage($p['image'])) ?>" alt="<?= h($p['brand_name']) ?> <?= h($p['name']) ?> Dental Tomografi Cihazı" loading="lazy">
         </div>
       </a>
       <div class="product-content">
