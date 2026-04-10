@@ -264,23 +264,24 @@ footer{background:#1e293b;color:#94a3b8;padding:4rem 5% 2rem}
 .whatsapp-btn svg{width:32px;height:32px;fill:#fff}
 
 /* ── Contact Modal ───────────────────────────────────── */
-.contact-modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);z-index:10000;align-items:center;justify-content:center;padding:1rem}
+.contact-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:10000;align-items:center;justify-content:center;padding:0}
 .contact-modal.active{display:flex}
-.contact-modal-content{background:#fff;border-radius:20px;max-width:500px;width:100%;position:relative;box-shadow:0 25px 50px rgba(0,0,0,.3);animation:modalSlideIn .3s ease}
+.contact-modal-content{background:#fff;border-radius:20px;max-width:460px;width:calc(100% - 2rem);max-height:calc(100vh - 2rem);max-height:calc(100dvh - 2rem);overflow-y:auto;position:relative;box-shadow:0 25px 50px rgba(0,0,0,.3);animation:modalSlideIn .3s ease;margin:1rem}
 @keyframes modalSlideIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
-.contact-modal-header{padding:2rem;border-bottom:1px solid var(--border);position:relative}
-.contact-modal-close{position:absolute;top:1.5rem;right:1.5rem;background:var(--bg-secondary);border:none;width:36px;height:36px;border-radius:50%;font-size:1.5rem;color:var(--text-secondary);cursor:pointer;transition:.3s;display:flex;align-items:center;justify-content:center;line-height:1}
+.contact-modal-header{padding:1.5rem 1.5rem 1.25rem;border-bottom:1px solid var(--border);position:relative;position:sticky;top:0;background:#fff;border-radius:20px 20px 0 0;z-index:1}
+.contact-modal-close{position:absolute;top:1rem;right:1rem;background:var(--bg-secondary);border:none;width:32px;height:32px;border-radius:50%;font-size:1.3rem;color:var(--text-secondary);cursor:pointer;transition:.3s;display:flex;align-items:center;justify-content:center;line-height:1}
 .contact-modal-close:hover{background:var(--border);transform:rotate(90deg)}
-.contact-modal-header h2{font-family:"Space Grotesk",sans-serif;font-size:1.75rem;font-weight:700;color:var(--text-primary);margin-bottom:.5rem}
-.contact-modal-header p{color:var(--text-secondary);font-size:.9rem}
-.contact-modal-body{padding:2rem}
-.contact-form-group{margin-bottom:1.25rem}
-.contact-form-group label{display:block;font-size:.9rem;font-weight:600;margin-bottom:.4rem;color:var(--text-primary)}
+.contact-modal-header h2{font-family:"Space Grotesk",sans-serif;font-size:1.5rem;font-weight:700;color:var(--text-primary);margin-bottom:.25rem}
+.contact-modal-header p{color:var(--text-secondary);font-size:.85rem}
+.contact-modal-body{padding:1.5rem}
+.contact-form-group{margin-bottom:1rem}
+.contact-form-group label{display:block;font-size:.85rem;font-weight:600;margin-bottom:.35rem;color:var(--text-primary)}
 .required{color:var(--accent)}
-.contact-form-group input,.contact-form-group textarea{width:100%;padding:.875rem 1rem;border:2px solid var(--border);border-radius:10px;font-size:.95rem;transition:.3s;font-family:inherit}
+.contact-form-group input,.contact-form-group textarea{width:100%;padding:.75rem .875rem;border:2px solid var(--border);border-radius:10px;font-size:.9rem;transition:.3s;font-family:inherit;box-sizing:border-box}
 .contact-form-group input:focus,.contact-form-group textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(0,102,255,.1)}
-.contact-form-checkbox{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:1.25rem}
-.contact-form-checkbox input{margin-top:.25rem;flex-shrink:0;width:16px;height:16px;accent-color:var(--primary)}
+.contact-form-group textarea{resize:vertical;min-height:70px}
+.contact-form-checkbox{display:flex;align-items:flex-start;gap:.6rem;margin-bottom:1rem}
+.contact-form-checkbox input{margin-top:.2rem;flex-shrink:0;width:16px;height:16px;accent-color:var(--primary)}
 .contact-form-checkbox label{font-size:.85rem;color:var(--text-secondary);line-height:1.5}
 .contact-form-checkbox a{color:var(--primary)}
 .contact-form-submit{width:100%;padding:1rem 2rem;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;border:none;border-radius:12px;font-weight:700;font-size:1.05rem;cursor:pointer;transition:.3s;margin-top:.5rem}

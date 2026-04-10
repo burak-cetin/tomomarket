@@ -65,25 +65,18 @@ $_brands = getBrands();
     </div>
     <div class="contact-modal-body">
       <form id="contact-form" onsubmit="handleContactSubmit(event)">
+        <input type="hidden" name="subject" value="" id="contact-subject">
         <div class="contact-form-group">
           <label>Ad Soyad <span class="required">*</span></label>
           <input type="text" name="name" placeholder="Adınız ve soyadınız" required>
         </div>
         <div class="contact-form-group">
-          <label>E-posta <span class="required">*</span></label>
-          <input type="email" name="email" placeholder="ornek@email.com" required>
-        </div>
-        <div class="contact-form-group">
-          <label>Telefon</label>
-          <input type="tel" name="phone" placeholder="05XX XXX XX XX">
-        </div>
-        <div class="contact-form-group">
-          <label>İlgilendiğiniz Cihaz</label>
-          <input type="text" name="subject" placeholder="Örn: LargeV Smart3D-X" id="contact-subject">
+          <label>Telefon <span class="required">*</span></label>
+          <input type="tel" name="phone" placeholder="05XX XXX XX XX" required>
         </div>
         <div class="contact-form-group">
           <label>Mesajınız</label>
-          <textarea name="message" placeholder="Mesajınızı buraya yazabilirsiniz..." rows="4"></textarea>
+          <textarea name="message" placeholder="Mesajınızı buraya yazabilirsiniz..." rows="3"></textarea>
         </div>
         <div class="contact-form-checkbox">
           <input type="checkbox" id="contact-kvkk" required>

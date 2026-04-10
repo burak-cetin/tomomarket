@@ -35,13 +35,13 @@ $message = trim($data['message'] ?? '');
 $source  = trim($data['source']  ?? ($_SERVER['HTTP_REFERER'] ?? 'website'));
 
 // Basit validasyon
-if (!$name || !$email) {
+if (!$name || !$phone) {
     http_response_code(400);
-    echo json_encode(['success' => false, 'message' => 'Ad ve e-posta zorunludur.']);
+    echo json_encode(['success' => false, 'message' => 'Ad ve telefon zorunludur.']);
     exit;
 }
 
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+if ($email && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     http_response_code(400);
     echo json_encode(['success' => false, 'message' => 'Geçersiz e-posta adresi.']);
     exit;
