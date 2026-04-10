@@ -19,7 +19,7 @@ foreach ($brands as $i => $b) {
     $brandListItems[] = [
         '@type'    => 'ListItem',
         'position' => $i + 1,
-        'url'      => SITE_URL . '/markalar/' . $b['slug'] . '-tomografi.php',
+        'url'      => SITE_URL . '/markalar/' . $b['slug'],
         'name'     => $b['name'] . ' Dental Tomografi Cihazları',
     ];
 }
@@ -69,7 +69,7 @@ require __DIR__ . '/includes/header.php';
   </div>
   <div class="brands-grid">
     <?php foreach ($brands as $b): ?>
-    <a href="markalar/<?= h($b['slug']) ?>-tomografi.php" class="brand-card" title="<?= h($b['name']) ?> Dental Tomografi Cihazları">
+    <a href="markalar/<?= h($b['slug']) ?>" class="brand-card" title="<?= h($b['name']) ?> Dental Tomografi Cihazları">
       <img src="<?= h(resolveImage($b['logo'])) ?>" alt="<?= h($b['name']) ?> Logo" loading="lazy">
     </a>
     <?php endforeach; ?>
@@ -103,7 +103,7 @@ require __DIR__ . '/includes/header.php';
   <div class="products-grid" id="products-grid" style="padding:0 5% 4rem;max-width:1400px;margin:0 auto">
     <?php foreach ($products as $p): ?>
     <div class="product-card" data-brand="<?= h($p['brand_slug']) ?>" data-type="<?= strpos(strtolower($p['goruntuleme']??''), '3d') !== false ? '3d' : '2d' ?>">
-      <a href="urunler/<?= h($p['slug']) ?>-detay.php" class="product-image-link">
+      <a href="urunler/<?= h($p['slug']) ?>" class="product-image-link">
         <div class="product-image-container">
           <?php if ($p['badge']): ?>
           <span class="product-badge badge-<?= h($p['badge_type']) ?>"><?= h($p['badge']) ?></span>
@@ -125,7 +125,7 @@ require __DIR__ . '/includes/header.php';
           <?php if ($p['brochure']): ?>
           <button class="btn-contact" onclick="window.open('<?= h($p['brochure']) ?>','_blank')">📄 Broşür</button>
           <?php endif; ?>
-          <button class="btn-details" onclick="location.href='urunler/<?= h($p['slug']) ?>-detay.php'">Detaylar</button>
+          <button class="btn-details" onclick="location.href='urunler/<?= h($p['slug']) ?>'">Detaylar</button>
         </div>
       </div>
     </div>
@@ -158,7 +158,7 @@ $faqs = [
     ['q'=>'CBCT ile panoramik röntgen arasındaki fark nedir?', 'a'=>'Panoramik röntgen (OPG) 2 boyutlu düzlemsel görüntü sunarken, CBCT (Cone Beam CT) üç boyutlu hacimsel veri elde eder. CBCT, implant planlaması, kanal tedavisi ve cerrahi planlamada çok daha fazla bilgi sağlar.'],
     ['q'=>'Kliniğim için doğru dental tomografi cihazını nasıl seçebilirim?', 'a'=>'Doğru cihaz seçimi için kliniğinizin uzmanlık alanına (implant, ortodonti, endodonti vb.), günlük hasta sayısına, mekân ölçülerinize ve bütçenize göre değerlendirme yapılmalıdır. TomografiMarket uzmanlarımız size özel analiz sunmaktadır.'],
     ['q'=>'Dental tomografi cihazı fiyatları nasıl belirlenir?', 'a'=>'Fiyatlar; cihazın menşei, görüntüleme modu (2D/3D), FOV boyutu, dedektör teknolojisi, yazılım paketi ve kurulum gereksinimine göre değişmektedir. Detaylı fiyat bilgisi için bize ulaşın.'],
-    ['q'=>'İkinci el dental tomografi cihazı almak mantıklı mıdır?', 'a'=>'Bakım geçmişi belgelenmiş, yetkili servisi olan markaların ikinci el cihazları bütçe dostu seçenek olabilir. Ancak dedektör ve X-ray tüpü durumu mutlaka uzman tarafından değerlendirilmelidir. Platformumuzda güvenilir ikinci el ilanlarına ulaşabilirsiniz.'],
+    ['q'=>'İkinci el dental tomografi cihazı almak mantıklı mıdır?', 'a'=>'Bakım geçmişi belgelenmiş, servis desteği olan markaların ikinci el cihazları bütçe dostu seçenek olabilir. Ancak dedektör ve X-ray tüpü durumu mutlaka uzman tarafından değerlendirilmelidir. Platformumuzda güvenilir ikinci el ilanlarına ulaşabilirsiniz.'],
     ['q'=>'Türkiye\'de dental tomografi için hangi markalar yaygın olarak kullanılıyor?', 'a'=>'Türkiye\'de Vatech, Planmeca, Sirona (Dentsply Sirona), NewTom, Carestream ve HDXWILL en yaygın kullanılan markalar arasındadır. Son yıllarda LargeV ve MyRay da önemli pay almaktadır.'],
 ];
 renderFAQSchema($faqs);
@@ -182,7 +182,7 @@ renderFAQSchema($faqs);
   <p>Uzman ekibimiz, ihtiyaçlarınızı analiz ederek size en doğru dental görüntüleme çözümünü sunar.</p>
   <div class="cta-buttons">
     <button class="btn-cta-white" onclick="openContactModal()">Ücretsiz Danışmanlık Al</button>
-    <a href="sayfalar/karsilastirma.php" class="btn-cta-outline">Cihazları Karşılaştır</a>
+    <a href="sayfalar/karsilastirma" class="btn-cta-outline">Cihazları Karşılaştır</a>
   </div>
 </section>
 

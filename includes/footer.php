@@ -11,7 +11,7 @@ $_brands = getBrands();
   <div class="footer-container">
     <div class="footer-brand">
       <h3>TomografiMarket</h3>
-      <p>Dental görüntüleme teknolojilerinde Türkiye'nin güvenilir çözüm ortağı. LargeV, HDXWILL, Vatech, Planmeca ve daha birçok dünya markasının yetkili distribütörüyüz.</p>
+      <p>Dental görüntüleme teknolojilerinde Türkiye'nin bağımsız karşılaştırma ve bilgi platformu. LargeV, HDXWILL, Vatech, Planmeca ve daha birçok dünya markasının ürünlerini tarafsız olarak inceliyoruz.</p>
     </div>
 
     <div class="footer-section">
@@ -23,26 +23,26 @@ $_brands = getBrands();
 
     <div class="footer-section">
       <h4>Hızlı Linkler</h4>
-      <p><a href="<?= $_depth ?>index.php#brands">Tüm Markalar</a></p>
-      <p><a href="<?= $_depth ?>ikinci-el.php">İkinci El Cihazlar</a></p>
-      <p><a href="<?= $_depth ?>blog/index.php">Blog &amp; Rehberler</a></p>
-      <p><a href="<?= $_depth ?>sayfalar/karsilastirma.php">Cihaz Karşılaştır</a></p>
-      <p><a href="<?= $_depth ?>sayfalar/hakkimizda.php">Hakkımızda</a></p>
-      <p><a href="<?= $_depth ?>sayfalar/kvkk.php">KVKK</a></p>
+      <p><a href="<?= $_depth ? $_depth : '/' ?>#brands">Tüm Markalar</a></p>
+      <p><a href="<?= $_depth ?>ikinci-el">İkinci El Cihazlar</a></p>
+      <p><a href="<?= $_depth ?>blog/">Blog &amp; Rehberler</a></p>
+      <p><a href="<?= $_depth ?>sayfalar/karsilastirma">Cihaz Karşılaştır</a></p>
+      <p><a href="<?= $_depth ?>sayfalar/hakkimizda">Hakkımızda</a></p>
+      <p><a href="<?= $_depth ?>sayfalar/kvkk">KVKK</a></p>
     </div>
 
     <div class="footer-section">
       <h4>Markalar</h4>
       <?php foreach (array_slice($_brands, 0, 8) as $b): ?>
-      <p><a href="<?= $_depth ?>markalar/<?= h($b['slug']) ?>-tomografi.php"><?= h($b['name']) ?></a></p>
+      <p><a href="<?= $_depth ?>markalar/<?= h($b['slug']) ?>"><?= h($b['name']) ?></a></p>
       <?php endforeach; ?>
     </div>
   </div>
 
   <div class="footer-bottom">
     <p>&copy; <?= date('Y') ?> TomografiMarket. Tüm hakları saklıdır.
-    | <a href="<?= $_depth ?>sayfalar/kvkk.php">KVKK</a>
-    | <a href="<?= $_depth ?>sayfalar/gizlilik.php">Gizlilik Politikası</a>
+    | <a href="<?= $_depth ?>sayfalar/kvkk">KVKK</a>
+    | <a href="<?= $_depth ?>sayfalar/gizlilik">Gizlilik Politikası</a>
     </p>
   </div>
 </footer>
@@ -88,7 +88,7 @@ $_brands = getBrands();
         <div class="contact-form-checkbox">
           <input type="checkbox" id="contact-kvkk" required>
           <label for="contact-kvkk">
-            <a href="<?= $_depth ?>sayfalar/kvkk.php" target="_blank">KVKK aydınlatma metnini</a> okudum ve kabul ediyorum
+            <a href="<?= $_depth ?>sayfalar/kvkk" target="_blank">KVKK aydınlatma metnini</a> okudum ve kabul ediyorum
           </label>
         </div>
         <button type="submit" class="contact-form-submit" id="contact-submit-btn">Mesajı Gönder</button>

@@ -32,7 +32,7 @@ $recentLeads  = $db->query("SELECT * FROM contact_leads ORDER BY created_at DESC
         <h1 style="font-family:'Space Grotesk',sans-serif;font-size:1.75rem">Dashboard</h1>
         <p style="color:var(--text-secondary)">Hoş geldiniz, <?= htmlspecialchars($_SESSION['admin_user'] ?? 'Admin') ?>!</p>
       </div>
-      <a href="../index.php" target="_blank" class="btn-outline" style="text-decoration:none;padding:.5rem 1rem;font-size:.9rem">🌐 Siteyi Görüntüle</a>
+      <a href="../" target="_blank" class="btn-outline" style="text-decoration:none;padding:.5rem 1rem;font-size:.9rem">🌐 Siteyi Görüntüle</a>
     </div>
 
     <!-- Stats -->

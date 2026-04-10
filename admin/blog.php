@@ -184,7 +184,7 @@ $allPosts = $db->query("SELECT * FROM blog_posts ORDER BY published_at DESC, cre
               <td><span class="badge-<?= $post['published'] ? 'active' : 'inactive' ?>"><?= $post['published'] ? 'Yayinda' : 'Taslak' ?></span></td>
               <td style="white-space:nowrap">
                 <a href="?action=edit&id=<?= $post['id'] ?>" style="color:var(--primary);text-decoration:none;font-size:.85rem;font-weight:600;margin-right:.75rem">Duzenle</a>
-                <a href="../blog/<?= htmlspecialchars($post['slug']) ?>.php" target="_blank" style="color:var(--secondary);text-decoration:none;font-size:.85rem;font-weight:600;margin-right:.75rem">Goruntule</a>
+                <a href="../blog/<?= htmlspecialchars($post['slug']) ?>" target="_blank" style="color:var(--secondary);text-decoration:none;font-size:.85rem;font-weight:600;margin-right:.75rem">Goruntule</a>
                 <a href="?action=delete&id=<?= $post['id'] ?>" style="color:var(--accent);text-decoration:none;font-size:.85rem;font-weight:600" onclick="return confirm('Bu yaziyi silmek istediginize emin misiniz?')">Sil</a>
               </td>
             </tr>

@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
 
     <div style="text-align:center;margin-top:1.5rem">
-      <a href="../index.php" style="color:var(--text-secondary);font-size:.85rem;text-decoration:none">← Siteye Dön</a>
+      <a href="../" style="color:var(--text-secondary);font-size:.85rem;text-decoration:none">← Siteye Dön</a>
     </div>
   </div>
 </body>

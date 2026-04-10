@@ -10,6 +10,6 @@ require __DIR__ . '/includes/header.php';
   <div style="font-size:5rem;margin-bottom:1rem">😕</div>
   <h1 style="font-family:'Space Grotesk',sans-serif;font-size:3rem;margin-bottom:1rem">404</h1>
   <p style="color:var(--text-secondary);font-size:1.1rem;margin-bottom:2rem">Aradığınız sayfa bulunamadı.</p>
-  <a href="index.php" class="btn-primary" style="text-decoration:none">Ana Sayfaya Dön</a>
+  <a href="/" class="btn-primary" style="text-decoration:none">Ana Sayfaya Dön</a>
 </div>
 <?php require __DIR__ . '/includes/footer.php'; ?>

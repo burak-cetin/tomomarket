@@ -1,16 +1,19 @@
 <?php
-// urunler/[product-slug]-detay.php
+// urunler/[product-slug] (clean URL)
 require_once __DIR__ . '/../config/site.php';
 require_once __DIR__ . '/../includes/functions.php';
 
-// Slug tespiti
+// Slug tespiti: query string veya dosya adindan
 $rawSlug = '';
 if (!empty($_GET['slug'])) {
     $rawSlug = preg_replace('/[^a-z0-9\-]/', '', strtolower($_GET['slug']));
 } else {
     $file = basename($_SERVER['PHP_SELF'], '.php');
+    // Eski format: hdxwill-dentio-detay → hdxwill-dentio
     if (preg_match('/^(.+)-detay$/', $file, $m)) {
         $rawSlug = $m[1];
+    } else {
+        $rawSlug = $file;
     }
 }
 
@@ -24,13 +27,13 @@ $currentPage = '';
 $seoTitle    = $p['seo_title'] ?: ($p['brand_name'] . ' ' . $p['name'] . ' Dental Tomografi Cihazı' . SEO_TITLE_SUFFIX);
 $seoDesc     = $p['seo_desc'] ?: ($p['brand_name'] . ' ' . $p['name'] . ' dental tomografi cihazı teknik özellikleri. ' . ($p['tagline'] ?? ''));
 $seoKeywords = $p['seo_keywords'] ?: ($p['brand_name'] . ' ' . $p['name'] . ', dental tomografi, cbct');
-$canonical   = SITE_URL . '/urunler/' . $p['slug'] . '-detay.php';
+$canonical   = SITE_URL . '/urunler/' . $p['slug'];
 $ogImage     = $p['image'] ?? '';
 
 ob_start(); renderProductSchema($p); $productSchemaStr = ob_get_clean();
 ob_start(); renderBreadcrumbSchema([
     ['TomografiMarket', SITE_URL],
-    [$p['brand_name'] . ' Tomografi', SITE_URL . '/markalar/' . $p['brand_slug'] . '-tomografi.php'],
+    [$p['brand_name'] . ' Tomografi', SITE_URL . '/markalar/' . $p['brand_slug']],
     [$p['brand_name'] . ' ' . $p['name'], $canonical],
 ]); $breadcrumbSchemaStr = ob_get_clean();
 $extraSchemas = [$productSchemaStr, $breadcrumbSchemaStr];
@@ -42,9 +45,9 @@ require __DIR__ . '/../includes/header.php';
 <!-- Breadcrumb -->
 <div class="breadcrumb">
   <div class="breadcrumb-container">
-    <a href="../index.php">Ana Sayfa</a>
+    <a href="../">Ana Sayfa</a>
     <span class="breadcrumb-sep">›</span>
-    <a href="../markalar/<?= h($p['brand_slug']) ?>-tomografi.php"><?= h($p['brand_name']) ?></a>
+    <a href="../markalar/<?= h($p['brand_slug']) ?>"><?= h($p['brand_name']) ?></a>
     <span class="breadcrumb-sep">›</span>
     <span class="breadcrumb-current"><?= h($p['name']) ?></span>
   </div>
@@ -140,7 +143,7 @@ require __DIR__ . '/../includes/header.php';
   <div class="products-grid">
     <?php foreach ($relatedProducts as $r): ?>
     <div class="product-card">
-      <a href="<?= h($r['slug']) ?>-detay.php" class="product-image-link">
+      <a href="<?= h($r['slug']) ?>" class="product-image-link">
         <div class="product-image-container">
           <img src="../<?= h(resolveImage($r['image'])) ?>" alt="<?= h($r['brand_name']) ?> <?= h($r['name']) ?>" loading="lazy">
         </div>
@@ -150,7 +153,7 @@ require __DIR__ . '/../includes/header.php';
         <h3><?= h($r['name']) ?></h3>
         <p class="product-description"><?= h(substr($r['description']??'',0,100)) ?>...</p>
         <div class="product-actions">
-          <button class="btn-details" onclick="location.href='<?= h($r['slug']) ?>-detay.php'">Detaylar</button>
+          <button class="btn-details" onclick="location.href='<?= h($r['slug']) ?>'">Detaylar</button>
         </div>
       </div>
     </div>
@@ -165,7 +168,7 @@ require __DIR__ . '/../includes/header.php';
   <p>Kliniğinize en uygun konfigürasyonu ve fiyatı öğrenmek için hemen iletişime geçin.</p>
   <div class="cta-buttons">
     <button class="btn-cta-white" onclick="openContactModal('<?= h($p['brand_name'].' '.$p['name']) ?>')">Ücretsiz Teklif Al</button>
-    <a href="../sayfalar/karsilastirma.php" class="btn-cta-outline">Diğer Modellerle Karşılaştır</a>
+    <a href="../sayfalar/karsilastirma" class="btn-cta-outline">Diğer Modellerle Karşılaştır</a>
   </div>
 </section>
 

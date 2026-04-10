@@ -11,25 +11,49 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 RewriteCond %{HTTP_HOST} ^www\.tomografimarket\.com$ [NC]
 RewriteRule ^ https://tomografimarket.com%{REQUEST_URI} [L,R=301]
 
-# ── Blog yazıları: /blog/slug.php → _post.php?slug=slug ──
-RewriteCond %{REQUEST_URI} ^/blog/([a-z0-9\-]+)\.php$
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^blog/([a-z0-9\-]+)\.php$ blog/_post.php?slug=$1 [L,QSA]
+# ── Eski .php uzantili URL'leri 301 ile yonlendir ────
+# (Google'daki eski linkler icin)
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.php[\s?] [NC]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ /%1 [R=301,L]
 
-# ── Marka sayfaları: /markalar/vatech-tomografi.php → _brand_page.php?brand=vatech ──
-RewriteCond %{REQUEST_URI} ^/markalar/([a-z0-9\-]+)-tomografi\.php$
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^markalar/([a-z0-9\-]+)-tomografi\.php$ markalar/_brand_page.php?brand=$1 [L,QSA]
+# ── Eski -detay URL'lerini yonlendir ─────────────────
+RewriteRule ^urunler/([a-z0-9\-]+)-detay/?$ /urunler/$1 [R=301,L]
 
-# ── Ürün detay: /urunler/slug-detay.php → _product_detail.php?slug=slug ──
-RewriteCond %{REQUEST_URI} ^/urunler/([a-z0-9\-]+)-detay\.php$
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^urunler/([a-z0-9\-]+)-detay\.php$ urunler/_product_detail.php?slug=$1 [L,QSA]
+# ── Eski -tomografi URL'lerini yonlendir ─────────────
+RewriteRule ^markalar/([a-z0-9\-]+)-tomografi/?$ /markalar/$1 [R=301,L]
 
-# ── PHP dosyalarını gizle (opsiyonel temiz URL) ───────
-# RewriteCond %{REQUEST_FILENAME} !-d
-# RewriteCond %{REQUEST_FILENAME}.php -f
-# RewriteRule ^(.*)$ $1.php [L]
+# ── Korunan dizinler ─────────────────────────────────
+RewriteRule ^config/ - [F,L]
+RewriteRule ^database/ - [F,L]
+RewriteRule ^includes/ - [F,L]
+
+# ══════════════════════════════════════════════════════
+#  TEMİZ URL KURALLARI (uzantisiz)
+# ══════════════════════════════════════════════════════
+
+# ── Markalar: /markalar/vatech → markalar/_brand_page.php?brand=vatech
+RewriteRule ^markalar/([a-z0-9\-]+)/?$ markalar/_brand_page.php?brand=$1 [L,QSA]
+
+# ── Ürünler: /urunler/hdxwill-dentio → urunler/_product_detail.php?slug=hdxwill-dentio
+RewriteRule ^urunler/([a-z0-9\-]+)/?$ urunler/_product_detail.php?slug=$1 [L,QSA]
+
+# ── Blog: /blog/cbct-nedir → blog/_post.php?slug=cbct-nedir
+RewriteCond %{REQUEST_URI} !^/blog/index
+RewriteRule ^blog/([a-z0-9\-]+)/?$ blog/_post.php?slug=$1 [L,QSA]
+
+# ── Genel: .php uzantisiz erisim ─────────────────────
+# /ikinci-el → ikinci-el.php, /blog → blog/index.php, vb.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.+)$ $1.php [L]
+
+# ── Sayfalar dizini ──────────────────────────────────
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/sayfalar/%{REQUEST_URI}.php -f
+RewriteRule ^(sayfalar/.+)$ $1.php [L]
 
 # ── Güvenlik başlıkları ───────────────────────────────
 <IfModule mod_headers.c>
@@ -61,13 +85,6 @@ RewriteRule ^urunler/([a-z0-9\-]+)-detay\.php$ urunler/_product_detail.php?slug=
   Order Allow,Deny
   Deny from all
 </FilesMatch>
-
-# config/ ve database/ dizinlerini tamamen koru
-<IfModule mod_rewrite.c>
-  RewriteRule ^config/ - [F,L]
-  RewriteRule ^database/ - [F,L]
-  RewriteRule ^includes/ - [F,L]
-</IfModule>
 
 # ── Hata sayfaları ────────────────────────────────────
 ErrorDocument 404 /404.php

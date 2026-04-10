@@ -5,12 +5,12 @@ $depth = '../';
 $currentPage = '';
 $seoTitle = 'KVKK Aydınlatma Metni | TomografiMarket';
 $seoDesc  = 'TomografiMarket KVKK (Kişisel Verilerin Korunması Kanunu) kapsamında kişisel verilerin işlenmesine ilişkin aydınlatma metni.';
-$canonical = SITE_URL . '/sayfalar/kvkk.php';
+$canonical = SITE_URL . '/sayfalar/kvkk';
 require __DIR__ . '/../includes/header.php';
 ?>
 <meta name="base-depth" content="../">
 <div class="breadcrumb"><div class="breadcrumb-container">
-  <a href="../index.php">Ana Sayfa</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">KVKK Aydınlatma Metni</span>
+  <a href="../">Ana Sayfa</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">KVKK Aydınlatma Metni</span>
 </div></div>
 
 <div style="max-width:900px;margin:0 auto;padding:4rem 5%">

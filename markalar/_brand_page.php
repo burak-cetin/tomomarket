@@ -1,18 +1,20 @@
 <?php
-// markalar/[brand-slug]-tomografi.php
-// .htaccess ile markalar/vatech-tomografi.php → bu dosya
+// markalar/[brand-slug] (clean URL)
+// .htaccess ile markalar/vatech → bu dosya
 require_once __DIR__ . '/../config/site.php';
 require_once __DIR__ . '/../includes/functions.php';
 
-// Slug tespiti: ya URL path'den ya da query string'den
+// Slug tespiti: query string veya dosya adindan
 $rawSlug = '';
 if (!empty($_GET['brand'])) {
     $rawSlug = preg_replace('/[^a-z0-9\-]/', '', strtolower($_GET['brand']));
 } else {
-    // Doğrudan dosya adından: /markalar/vatech-tomografi.php → vatech
     $file = basename($_SERVER['PHP_SELF'], '.php');
+    // Eski format: vatech-tomografi → vatech
     if (preg_match('/^(.+)-tomografi$/', $file, $m)) {
         $rawSlug = $m[1];
+    } else {
+        $rawSlug = $file;
     }
 }
 
@@ -29,7 +31,7 @@ $currentPage = '';
 $seoTitle    = $brand['seo_title'] ?: ($brand['name'] . ' Dental Tomografi Cihazları' . SEO_TITLE_SUFFIX);
 $seoDesc     = $brand['seo_desc'] ?: ('TomografiMarket\'te ' . $brand['name'] . ' markasının tüm dental tomografi ve görüntüleme cihazlarını inceleyin.');
 $seoKeywords = $brand['seo_keywords'] ?: ($brand['name'] . ' tomografi, ' . $brand['name'] . ' cbct, dental tomografi');
-$canonical   = SITE_URL . '/markalar/' . $brand['slug'] . '-tomografi.php';
+$canonical   = SITE_URL . '/markalar/' . $brand['slug'];
 $ogImage     = $brand['logo'] ?? '';
 
 // Structured Data
@@ -43,7 +45,7 @@ $breadcrumbSchema = '';
 ob_start();
 renderBreadcrumbSchema([
     ['TomografiMarket', SITE_URL],
-    ['Markalar', SITE_URL . '/index.php#brands'],
+    ['Markalar', SITE_URL . '/#brands'],
     [$brand['name'] . ' Tomografi', $canonical],
 ]);
 $breadcrumbSchema = ob_get_clean();
@@ -56,9 +58,9 @@ require __DIR__ . '/../includes/header.php';
 <!-- Breadcrumb -->
 <div class="breadcrumb">
   <div class="breadcrumb-container">
-    <a href="../index.php">Ana Sayfa</a>
+    <a href="../">Ana Sayfa</a>
     <span class="breadcrumb-sep">›</span>
-    <a href="../index.php#brands">Markalar</a>
+    <a href="../#brands">Markalar</a>
     <span class="breadcrumb-sep">›</span>
     <span class="breadcrumb-current"><?= h($brand['name']) ?> Dental Tomografi</span>
   </div>
@@ -72,7 +74,7 @@ require __DIR__ . '/../includes/header.php';
     </div>
     <div class="brand-info">
       <?php if ($brand['origin']): ?>
-      <span style="display:inline-block;background:rgba(255,255,255,.2);color:#fff;padding:.3rem .8rem;border-radius:20px;font-size:.8rem;font-weight:600;margin-bottom:.75rem">
+      <span style="display:inline-block;background:var(--bg-tertiary);color:var(--primary);padding:.3rem .8rem;border-radius:20px;font-size:.8rem;font-weight:600;margin-bottom:.75rem">
         🌍 <?= h($brand['origin']) ?> Menşeli
       </span>
       <?php endif; ?>
@@ -98,7 +100,7 @@ require __DIR__ . '/../includes/header.php';
   <div class="products-grid">
     <?php foreach ($products as $p): ?>
     <div class="product-card">
-      <a href="../urunler/<?= h($p['slug']) ?>-detay.php" class="product-image-link">
+      <a href="../urunler/<?= h($p['slug']) ?>" class="product-image-link">
         <div class="product-image-container">
           <?php if ($p['badge']): ?>
           <span class="product-badge badge-<?= h($p['badge_type']) ?>"><?= h($p['badge']) ?></span>
@@ -123,7 +125,7 @@ require __DIR__ . '/../includes/header.php';
           <?php else: ?>
           <button class="btn-contact" onclick="openContactModal('<?= h($brand['name'].' '.$p['name']) ?>')">✉ Bilgi Al</button>
           <?php endif; ?>
-          <button class="btn-details" onclick="location.href='../urunler/<?= h($p['slug']) ?>-detay.php'">Detaylar</button>
+          <button class="btn-details" onclick="location.href='../urunler/<?= h($p['slug']) ?>'">Detaylar</button>
         </div>
       </div>
     </div>
@@ -138,7 +140,7 @@ require __DIR__ . '/../includes/header.php';
   <p>Uzman ekibimiz, <?= h($brand['name']) ?> ürünleri hakkında size detaylı bilgi sunmaktan memnuniyet duyar.</p>
   <div class="cta-buttons">
     <button class="btn-cta-white" onclick="openContactModal('<?= h($brand['name']) ?>')">Fiyat Teklifi İste</button>
-    <a href="../sayfalar/karsilastirma.php" class="btn-cta-outline">Cihazları Karşılaştır</a>
+    <a href="../sayfalar/karsilastirma" class="btn-cta-outline">Cihazları Karşılaştır</a>
   </div>
 </section>
 

@@ -9,7 +9,7 @@ $currentPage = 'karsilastirma';
 $seoTitle    = 'Dental Tomografi Cihazı Karşılaştırma | TomografiMarket';
 $seoDesc     = 'Dental CBCT ve panoramik röntgen cihazlarını yan yana karşılaştırın. Teknik özellikler, FOV, voksel boyutu, sensör teknolojisi ve daha fazlası.';
 $seoKeywords = 'dental tomografi karşılaştırma, cbct karşılaştırma, dental cihaz karşılaştır';
-$canonical   = SITE_URL . '/sayfalar/karsilastirma.php';
+$canonical   = SITE_URL . '/sayfalar/karsilastirma';
 
 require __DIR__ . '/../includes/header.php';
 ?>
@@ -18,7 +18,7 @@ require __DIR__ . '/../includes/header.php';
 <!-- Breadcrumb -->
 <div class="breadcrumb">
   <div class="breadcrumb-container">
-    <a href="../index.php">Ana Sayfa</a>
+    <a href="../">Ana Sayfa</a>
     <span class="breadcrumb-sep">›</span>
     <span class="breadcrumb-current">Cihaz Karşılaştırma</span>
   </div>
@@ -133,7 +133,7 @@ function updateComparison() {
   var header = document.getElementById('comp-header');
   header.innerHTML = '<th style="width:200px">Özellik</th>';
   items.forEach(function(p) {
-    header.innerHTML += '<th><a href="../urunler/' + p.slug + '-detay.php" style="color:#fff">' +
+    header.innerHTML += '<th><a href="../urunler/' + p.slug + '" style="color:#fff">' +
       p.brand_name + '<br>' + p.name + '</a></th>';
   });
 
@@ -171,7 +171,7 @@ function updateComparison() {
   items.forEach(function(p) {
     var td = document.createElement('td');
     td.innerHTML = '<button class="btn-details" style="margin:.25rem" onclick="openContactModal(\'' + p.brand_name + ' ' + p.name + '\')">Teklif Al</button>' +
-      '<button class="btn-contact" style="margin:.25rem" onclick="location.href=\'../urunler/' + p.slug + '-detay.php\'">Detaylar</button>';
+      '<button class="btn-contact" style="margin:.25rem" onclick="location.href=\'../urunler/' + p.slug + '\'">Detaylar</button>';
     actionTr.appendChild(td);
   });
   body.appendChild(actionTr);

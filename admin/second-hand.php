@@ -9,6 +9,28 @@ $db     = getDB();
 $action = $_GET['action'] ?? 'list';
 $msg    = '';
 
+// ── Dosya yukleme yardimcisi ─────────────────────────
+function handleUpload(string $inputName, string $targetDir, array $allowedExts): string {
+    if (empty($_FILES[$inputName]) || $_FILES[$inputName]['error'] !== UPLOAD_ERR_OK) return '';
+    $file = $_FILES[$inputName];
+    $ext  = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+    if (!in_array($ext, $allowedExts)) return '';
+    $basePath = dirname(__DIR__);
+    $dir = $basePath . '/' . $targetDir;
+    if (!is_dir($dir)) mkdir($dir, 0755, true);
+    $safeName = preg_replace('/[^a-z0-9\-\.]/', '-', strtolower(pathinfo($file['name'], PATHINFO_FILENAME)));
+    $fileName = $safeName . '.' . $ext;
+    $counter = 1;
+    while (file_exists($dir . '/' . $fileName)) {
+        $fileName = $safeName . '-' . $counter . '.' . $ext;
+        $counter++;
+    }
+    if (move_uploaded_file($file['tmp_name'], $dir . '/' . $fileName)) {
+        return $targetDir . '/' . $fileName;
+    }
+    return '';
+}
+
 // ── Kaydet / Guncelle ─────────────────────────────────
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id   = (int)($_POST['id'] ?? 0);
@@ -26,6 +48,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $vals[$c] = trim($_POST[$c] ?? '');
         }
+    }
+
+    // Gorsel dosya yukleme
+    $imgPath = handleUpload('image_file', 'uploads/second-hand', ['jpg','jpeg','png','webp']);
+    if ($imgPath) {
+        // second_hand tablosunda sadece dosya adi saklanir
+        $vals['image'] = basename($imgPath);
     }
 
     // Slug otomatik olustur
@@ -91,7 +120,7 @@ $allItems = $db->query("SELECT * FROM second_hand ORDER BY featured DESC, create
     ?>
     <div class="admin-card">
       <h2 style="font-family:'Space Grotesk',sans-serif;font-size:1.15rem;margin-bottom:1.5rem"><?= $formTitle ?></h2>
-      <form method="POST">
+      <form method="POST" enctype="multipart/form-data">
         <?php if (!empty($item['id'])): ?><input type="hidden" name="id" value="<?= (int)$item['id'] ?>"><?php endif; ?>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
@@ -151,8 +180,12 @@ $allItems = $db->query("SELECT * FROM second_hand ORDER BY featured DESC, create
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
           <div class="admin-form-group">
-            <label>Gorsel Dosya Adi</label>
-            <input type="text" name="image" value="<?= htmlspecialchars($item['image']??'') ?>" placeholder="resim.jpg (uploads/second-hand/ icine yukleyin)">
+            <label>Gorsel Yukle</label>
+            <input type="file" name="image_file" accept="image/jpeg,image/png,image/webp" style="padding:.5rem">
+            <?php if (!empty($item['image'])): ?>
+            <small style="color:var(--text-light);display:block;margin-top:.3rem">Mevcut: <?= htmlspecialchars($item['image']) ?></small>
+            <?php endif; ?>
+            <input type="hidden" name="image" value="<?= htmlspecialchars($item['image']??'') ?>">
           </div>
           <div class="admin-form-group">
             <label>Iletisim Adi</label>

@@ -195,7 +195,7 @@ if ($msg) {
       <div style="display:flex;gap:.75rem;flex-wrap:wrap">
         <a href="../sitemap.php" target="_blank" class="btn-outline" style="text-decoration:none;font-size:.85rem;padding:.5rem 1rem">Sitemap (XML)</a>
         <a href="../robots.txt" target="_blank" class="btn-outline" style="text-decoration:none;font-size:.85rem;padding:.5rem 1rem">robots.txt</a>
-        <a href="../index.php" target="_blank" class="btn-outline" style="text-decoration:none;font-size:.85rem;padding:.5rem 1rem">Siteyi Goruntule</a>
+        <a href="../" target="_blank" class="btn-outline" style="text-decoration:none;font-size:.85rem;padding:.5rem 1rem">Siteyi Goruntule</a>
       </div>
     </div>
     <?php endif; ?>

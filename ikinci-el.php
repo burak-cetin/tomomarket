@@ -9,7 +9,7 @@ $currentPage = 'ikinci-el';
 $seoTitle    = 'İkinci El Dental Tomografi Cihazları | TomografiMarket';
 $seoDesc     = 'TomografiMarket\'te ikinci el dental tomografi ve görüntüleme cihazları. CBCT, panoramik röntgen ve daha fazlası. Güvenilir satıcılardan uygun fiyatlı kullanılmış dental ekipmanlar.';
 $seoKeywords = 'ikinci el dental tomografi, kullanılmış cbct, ikinci el panoramik röntgen, ikinci el dental cihaz, dental cihaz al sat';
-$canonical   = SITE_URL . '/ikinci-el.php';
+$canonical   = SITE_URL . '/ikinci-el';
 
 ob_start();
 renderBreadcrumbSchema([
@@ -133,10 +133,10 @@ require __DIR__ . '/includes/header.php';
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem">
       <?php
       $tips = [
-          ['icon'=>'📋', 'title'=>'Bakım Geçmişini Kontrol Edin', 'desc'=>'Yetkili servis kayıtlarını ve bakım belgelerini mutlaka isteyin.'],
-          ['icon'=>'🔬', 'title'=>'Teknik Ekspertiz Yaptırın', 'desc'=>'Satın almadan önce uzman teknik ekibimizin cihazı incelemesini sağlayın.'],
+          ['icon'=>'📋', 'title'=>'Bakım Geçmişini Kontrol Edin', 'desc'=>'Servis kayıtlarını ve bakım belgelerini mutlaka isteyin.'],
+          ['icon'=>'🔬', 'title'=>'Teknik Ekspertiz Yaptırın', 'desc'=>'Satın almadan önce bağımsız bir uzmanın cihazı incelemesini sağlayın.'],
           ['icon'=>'💾', 'title'=>'Yazılım Uyumluluğunu Sorun', 'desc'=>'Cihazın güncel işletim sistemleriyle ve DICOM standardıyla uyumlu olduğunu doğrulayın.'],
-          ['icon'=>'🔧', 'title'=>'Yedek Parça Bulunabilirliği', 'desc'=>'Türkiye\'de yetkili servis ve yedek parça temin imkânını araştırın.'],
+          ['icon'=>'🔧', 'title'=>'Yedek Parça Bulunabilirliği', 'desc'=>'Türkiye\'de servis ve yedek parça temin imkânını araştırın.'],
       ];
       foreach ($tips as $tip): ?>
       <div class="feature-item">
@@ -155,7 +155,7 @@ require __DIR__ . '/includes/header.php';
   <p>Platformumuza ilan ekleyin, binlerce diş hekimi adayına ulaşın. Ücretsiz ilan ve ekspertiz hizmetimizden yararlanın.</p>
   <div class="cta-buttons">
     <button class="btn-cta-white" onclick="openContactModal()">İlan Ver</button>
-    <a href="blog/ikinci-el-dental-tomografi-alirken-dikkat-edilmesi-gerekenler.php" class="btn-cta-outline">Satın Alma Rehberi</a>
+    <a href="blog/ikinci-el-dental-tomografi-alirken-dikkat-edilmesi-gerekenler" class="btn-cta-outline">Satın Alma Rehberi</a>
   </div>
 </section>
 

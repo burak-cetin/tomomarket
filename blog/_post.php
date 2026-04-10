@@ -18,7 +18,7 @@ $currentPage = 'blog';
 
 $seoTitle  = $post['seo_title'] ?: ($post['title'] . SEO_TITLE_SUFFIX);
 $seoDesc   = $post['seo_desc'] ?: $post['excerpt'];
-$canonical = SITE_URL . '/blog/' . $post['slug'] . '.php';
+$canonical = SITE_URL . '/blog/' . $post['slug'];
 $ogImage   = $post['cover_image'] ?? '';
 
 ob_start();
@@ -51,9 +51,9 @@ require __DIR__ . '/../includes/header.php';
 <!-- Breadcrumb -->
 <div class="breadcrumb">
   <div class="breadcrumb-container">
-    <a href="../index.php">Ana Sayfa</a>
+    <a href="../">Ana Sayfa</a>
     <span class="breadcrumb-sep">›</span>
-    <a href="index.php">Blog</a>
+    <a href="./">Blog</a>
     <span class="breadcrumb-sep">›</span>
     <span class="breadcrumb-current"><?= h($post['title']) ?></span>
   </div>
@@ -112,7 +112,7 @@ require __DIR__ . '/../includes/header.php';
       <div style="background:var(--bg-primary);border:1px solid var(--border);border-radius:16px;padding:1.5rem">
         <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1rem;margin-bottom:1rem">Son Yazılar</h3>
         <?php foreach ($recentPosts as $rp): if ($rp['slug'] === $post['slug']) continue; ?>
-        <a href="<?= h($rp['slug']) ?>.php" style="display:block;padding:.75rem 0;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;font-size:.9rem;font-weight:500;line-height:1.4">
+        <a href="<?= h($rp['slug']) ?>" style="display:block;padding:.75rem 0;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;font-size:.9rem;font-weight:500;line-height:1.4">
           <?= h($rp['title']) ?>
           <span style="display:block;font-size:.75rem;color:var(--text-light);margin-top:.25rem"><?= date('d.m.Y', strtotime($rp['published_at'])) ?></span>
         </a>

@@ -26,7 +26,7 @@ $now = date('Y-m-d');
 
   <!-- İkinci El -->
   <url>
-    <loc><?= SITE_URL ?>/ikinci-el.php</loc>
+    <loc><?= SITE_URL ?>/ikinci-el</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <lastmod><?= $now ?></lastmod>
@@ -42,14 +42,14 @@ $now = date('Y-m-d');
 
   <!-- Karşılaştırma -->
   <url>
-    <loc><?= SITE_URL ?>/sayfalar/karsilastirma.php</loc>
+    <loc><?= SITE_URL ?>/sayfalar/karsilastirma</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- Hakkımızda -->
   <url>
-    <loc><?= SITE_URL ?>/sayfalar/hakkimizda.php</loc>
+    <loc><?= SITE_URL ?>/sayfalar/hakkimizda</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -57,7 +57,7 @@ $now = date('Y-m-d');
   <!-- Marka Sayfaları -->
   <?php foreach ($brands as $b): ?>
   <url>
-    <loc><?= SITE_URL ?>/markalar/<?= htmlspecialchars($b['slug']) ?>-tomografi.php</loc>
+    <loc><?= SITE_URL ?>/markalar/<?= htmlspecialchars($b['slug']) ?></loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <lastmod><?= $now ?></lastmod>
@@ -67,7 +67,7 @@ $now = date('Y-m-d');
   <!-- Ürün Sayfaları -->
   <?php foreach ($products as $p): ?>
   <url>
-    <loc><?= SITE_URL ?>/urunler/<?= htmlspecialchars($p['slug']) ?>-detay.php</loc>
+    <loc><?= SITE_URL ?>/urunler/<?= htmlspecialchars($p['slug']) ?></loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <lastmod><?= $now ?></lastmod>
@@ -77,7 +77,7 @@ $now = date('Y-m-d');
   <!-- Blog Yazıları -->
   <?php foreach ($posts as $post): ?>
   <url>
-    <loc><?= SITE_URL ?>/blog/<?= htmlspecialchars($post['slug']) ?>.php</loc>
+    <loc><?= SITE_URL ?>/blog/<?= htmlspecialchars($post['slug']) ?></loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <lastmod><?= date('Y-m-d', strtotime($post['updated_at'] ?: $post['published_at'])) ?></lastmod>
@@ -86,12 +86,12 @@ $now = date('Y-m-d');
 
   <!-- Statik Sayfalar -->
   <url>
-    <loc><?= SITE_URL ?>/sayfalar/gizlilik.php</loc>
+    <loc><?= SITE_URL ?>/sayfalar/gizlilik</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc><?= SITE_URL ?>/sayfalar/kvkk.php</loc>
+    <loc><?= SITE_URL ?>/sayfalar/kvkk</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

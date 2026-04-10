@@ -35,7 +35,7 @@ $_curPage  = $currentPage ?? '';
 <nav>
   <div class="nav-container">
     <div class="logo-section">
-      <a href="<?= $_depth ?>index.php" class="logo-link">
+      <a href="<?= $_depth ?: '/' ?>" class="logo-link">
         <div class="logo-circle">
           <img src="<?= $_depth ?>img/tomografi_market_logo.png" alt="TomografiMarket Logo" width="120" height="80">
         </div>
@@ -47,10 +47,10 @@ $_curPage  = $currentPage ?? '';
     </div>
 
     <div class="nav-links desktop-nav">
-      <a href="<?= $_depth ?>index.php#brands" class="nav-link<?= $_curPage==='home'?' active':'' ?>">Ürünler</a>
-      <a href="<?= $_depth ?>ikinci-el.php" class="nav-link<?= $_curPage==='ikinci-el'?' active':'' ?>">İkinci El</a>
-      <a href="<?= $_depth ?>blog/index.php" class="nav-link<?= $_curPage==='blog'?' active':'' ?>">Blog</a>
-      <a href="<?= $_depth ?>sayfalar/karsilastirma.php" class="nav-link<?= $_curPage==='karsilastirma'?' active':'' ?>">Karşılaştır</a>
+      <a href="<?= $_depth ? $_depth : '/' ?>#brands" class="nav-link<?= $_curPage==='home'?' active':'' ?>">Ürünler</a>
+      <a href="<?= $_depth ?>ikinci-el" class="nav-link<?= $_curPage==='ikinci-el'?' active':'' ?>">İkinci El</a>
+      <a href="<?= $_depth ?>blog/" class="nav-link<?= $_curPage==='blog'?' active':'' ?>">Blog</a>
+      <a href="<?= $_depth ?>sayfalar/karsilastirma" class="nav-link<?= $_curPage==='karsilastirma'?' active':'' ?>">Karşılaştır</a>
       <button class="btn-outline" onclick="openContactModal()">İletişim</button>
     </div>
 
@@ -62,9 +62,9 @@ $_curPage  = $currentPage ?? '';
 
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobile-menu">
-  <a href="<?= $_depth ?>index.php#brands">Ürünler</a>
-  <a href="<?= $_depth ?>ikinci-el.php">İkinci El</a>
-  <a href="<?= $_depth ?>blog/index.php">Blog</a>
-  <a href="<?= $_depth ?>sayfalar/karsilastirma.php">Karşılaştır</a>
+  <a href="<?= $_depth ? $_depth : '/' ?>#brands">Ürünler</a>
+  <a href="<?= $_depth ?>ikinci-el">İkinci El</a>
+  <a href="<?= $_depth ?>blog/">Blog</a>
+  <a href="<?= $_depth ?>sayfalar/karsilastirma">Karşılaştır</a>
   <button class="btn-outline mobile-contact-btn" onclick="openContactModal();toggleMobileMenu()">İletişim</button>
 </div>

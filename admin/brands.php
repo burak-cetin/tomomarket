@@ -151,7 +151,7 @@ $allBrands = $db->query("SELECT * FROM brands ORDER BY sort_order, name")->fetch
               <td><span class="badge-<?= $brand['active'] ? 'active' : 'inactive' ?>"><?= $brand['active'] ? 'Aktif' : 'Pasif' ?></span></td>
               <td style="white-space:nowrap">
                 <a href="?action=edit&id=<?= $brand['id'] ?>" style="color:var(--primary);text-decoration:none;font-size:.85rem;font-weight:600;margin-right:.75rem">Duzenle</a>
-                <a href="../markalar/<?= htmlspecialchars($brand['slug']) ?>-tomografi.php" target="_blank" style="color:var(--secondary);text-decoration:none;font-size:.85rem;font-weight:600;margin-right:.75rem">Goruntule</a>
+                <a href="../markalar/<?= htmlspecialchars($brand['slug']) ?>" target="_blank" style="color:var(--secondary);text-decoration:none;font-size:.85rem;font-weight:600;margin-right:.75rem">Goruntule</a>
                 <a href="?action=delete&id=<?= $brand['id'] ?>" style="color:var(--accent);text-decoration:none;font-size:.85rem;font-weight:600" onclick="return confirm('Silmek istediginize emin misiniz? Bu markaya ait tum urunler de silinecektir.')">Sil</a>
               </td>
             </tr>

@@ -9,6 +9,29 @@ $db     = getDB();
 $action = $_GET['action'] ?? 'list';
 $msg    = '';
 
+// ── Dosya yukleme yardimcisi ─────────────────────────
+function handleUpload(string $inputName, string $targetDir, array $allowedExts): string {
+    if (empty($_FILES[$inputName]) || $_FILES[$inputName]['error'] !== UPLOAD_ERR_OK) return '';
+    $file = $_FILES[$inputName];
+    $ext  = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+    if (!in_array($ext, $allowedExts)) return '';
+    $basePath = dirname(__DIR__);
+    $dir = $basePath . '/' . $targetDir;
+    if (!is_dir($dir)) mkdir($dir, 0755, true);
+    $safeName = preg_replace('/[^a-z0-9\-\.]/', '-', strtolower(pathinfo($file['name'], PATHINFO_FILENAME)));
+    $fileName = $safeName . '.' . $ext;
+    // Ayni isim varsa sonuna sayi ekle
+    $counter = 1;
+    while (file_exists($dir . '/' . $fileName)) {
+        $fileName = $safeName . '-' . $counter . '.' . $ext;
+        $counter++;
+    }
+    if (move_uploaded_file($file['tmp_name'], $dir . '/' . $fileName)) {
+        return $targetDir . '/' . $fileName;
+    }
+    return '';
+}
+
 // ── Kaydet / Güncelle ─────────────────────────────────
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id    = (int)($_POST['id'] ?? 0);
@@ -27,6 +50,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $vals[$c] = trim($_POST[$c] ?? '');
         }
     }
+
+    // Gorsel dosya yukleme
+    $imgPath = handleUpload('image_file', 'img/products', ['jpg','jpeg','png','webp']);
+    if ($imgPath) $vals['image'] = $imgPath;
+
+    // Brosur dosya yukleme
+    $pdfPath = handleUpload('brochure_file', 'brosurler', ['pdf']);
+    if ($pdfPath) $vals['brochure'] = $pdfPath;
 
     if ($id) {
         $set  = implode(', ', array_map(fn($c) => "`$c`=:$c", $cols));
@@ -87,7 +118,7 @@ $allProducts = $db->query("SELECT p.*, b.name AS brand_name FROM products p JOIN
     ?>
     <div class="admin-card">
       <h2 style="font-family:'Space Grotesk',sans-serif;font-size:1.15rem;margin-bottom:1.5rem"><?= $formTitle ?></h2>
-      <form method="POST">
+      <form method="POST" enctype="multipart/form-data">
         <?php if (!empty($p['id'])): ?><input type="hidden" name="id" value="<?= (int)$p['id'] ?>"><?php endif; ?>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
@@ -120,8 +151,22 @@ $allProducts = $db->query("SELECT p.*, b.name AS brand_name FROM products p JOIN
         </div>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
-          <div class="admin-form-group"><label>Görsel yolu</label><input type="text" name="image" value="<?= htmlspecialchars($p['image']??'') ?>" placeholder="img/products/..."></div>
-          <div class="admin-form-group"><label>Broşür yolu</label><input type="text" name="brochure" value="<?= htmlspecialchars($p['brochure']??'') ?>" placeholder="brosurler/..."></div>
+          <div class="admin-form-group">
+            <label>Ürün Görseli</label>
+            <input type="file" name="image_file" accept="image/jpeg,image/png,image/webp" style="padding:.5rem">
+            <?php if (!empty($p['image'])): ?>
+            <small style="color:var(--text-light);display:block;margin-top:.3rem">Mevcut: <?= htmlspecialchars($p['image']) ?></small>
+            <?php endif; ?>
+            <input type="hidden" name="image" value="<?= htmlspecialchars($p['image']??'') ?>">
+          </div>
+          <div class="admin-form-group">
+            <label>Broşür (PDF)</label>
+            <input type="file" name="brochure_file" accept="application/pdf" style="padding:.5rem">
+            <?php if (!empty($p['brochure'])): ?>
+            <small style="color:var(--text-light);display:block;margin-top:.3rem">Mevcut: <?= htmlspecialchars($p['brochure']) ?></small>
+            <?php endif; ?>
+            <input type="hidden" name="brochure" value="<?= htmlspecialchars($p['brochure']??'') ?>">
+          </div>
           <div class="admin-form-group"><label>Badge</label><input type="text" name="badge" value="<?= htmlspecialchars($p['badge']??'') ?>" placeholder="Yeni, Popüler..."></div>
           <div class="admin-form-group"><label>Badge Tipi</label>
             <select name="badge_type">
@@ -195,7 +240,7 @@ $allProducts = $db->query("SELECT p.*, b.name AS brand_name FROM products p JOIN
               <td><span class="badge-<?= $prod['active'] ? 'active' : 'inactive' ?>"><?= $prod['active'] ? 'Aktif' : 'Pasif' ?></span></td>
               <td style="white-space:nowrap">
                 <a href="?action=edit&id=<?= $prod['id'] ?>" style="color:var(--primary);text-decoration:none;font-size:.85rem;font-weight:600;margin-right:.75rem">Düzenle</a>
-                <a href="../urunler/<?= htmlspecialchars($prod['slug']) ?>-detay.php" target="_blank" style="color:var(--secondary);text-decoration:none;font-size:.85rem;font-weight:600;margin-right:.75rem">Görüntüle</a>
+                <a href="../urunler/<?= htmlspecialchars($prod['slug']) ?>" target="_blank" style="color:var(--secondary);text-decoration:none;font-size:.85rem;font-weight:600;margin-right:.75rem">Görüntüle</a>
                 <a href="?action=delete&id=<?= $prod['id'] ?>" style="color:var(--accent);text-decoration:none;font-size:.85rem;font-weight:600" onclick="return confirm('Silmek istediğinize emin misiniz?')">Sil</a>
               </td>
             </tr>

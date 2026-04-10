@@ -5,12 +5,12 @@ $depth = '../';
 $currentPage = '';
 $seoTitle = 'Gizlilik Politikası | TomografiMarket';
 $seoDesc  = 'TomografiMarket gizlilik politikası. Kişisel verilerin korunması, çerez kullanımı ve veri güvenliği hakkında bilgi.';
-$canonical = SITE_URL . '/sayfalar/gizlilik.php';
+$canonical = SITE_URL . '/sayfalar/gizlilik';
 require __DIR__ . '/../includes/header.php';
 ?>
 <meta name="base-depth" content="../">
 <div class="breadcrumb"><div class="breadcrumb-container">
-  <a href="../index.php">Ana Sayfa</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Gizlilik Politikası</span>
+  <a href="../">Ana Sayfa</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Gizlilik Politikası</span>
 </div></div>
 
 <div style="max-width:900px;margin:0 auto;padding:4rem 5%">

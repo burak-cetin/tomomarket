@@ -112,15 +112,16 @@ nav{background:var(--bg-primary);padding:1.25rem 5%;box-shadow:var(--shadow);pos
 .btn-details{background:var(--primary);color:#fff}
 .btn-details:hover{background:var(--primary-dark)}
 
-/* ── Brand Header (marka sayfası) ────────────────────── */
-.brand-header{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;padding:4rem 5%}
-.brand-header-container{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:3rem}
-.brand-logo-box{background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border-radius:16px;padding:2rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;width:200px;height:120px}
-.brand-logo-box img{max-width:100%;max-height:80px;object-fit:contain;filter:brightness(0) invert(1)}
-.brand-info h2{font-family:"Space Grotesk",sans-serif;font-size:2rem;font-weight:700;margin-bottom:1rem}
-.brand-info p{opacity:.9;line-height:1.7;max-width:700px}
-.brand-cta-button{margin-top:1.5rem;background:rgba(255,255,255,.2);color:#fff;border:2px solid rgba(255,255,255,.5);padding:.8rem 1.8rem;border-radius:12px;font-weight:600;cursor:pointer;transition:.3s;display:inline-flex;align-items:center;gap:.5rem}
-.brand-cta-button:hover{background:#fff;color:var(--primary)}
+/* ── Brand Header (marka sayfası — hero stili) ───────── */
+.brand-header{background:linear-gradient(135deg,#eff6ff 0%,#dbeafe 100%);padding:4rem 5%;position:relative;overflow:hidden}
+.brand-header::before{content:'';position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(0,102,255,.08) 0%,transparent 70%);border-radius:50%;top:-100px;right:-100px}
+.brand-header-container{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:3rem;position:relative}
+.brand-logo-box{background:#fff;border:2px solid var(--border);border-radius:20px;padding:2rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;width:200px;height:120px;box-shadow:var(--shadow)}
+.brand-logo-box img{max-width:100%;max-height:80px;object-fit:contain}
+.brand-info h1{font-family:"Space Grotesk",sans-serif;font-size:2.2rem;font-weight:700;color:var(--text-primary);margin-bottom:1rem}
+.brand-info p{color:var(--text-secondary);line-height:1.7;max-width:700px}
+.brand-cta-button{margin-top:1.5rem;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;border:none;padding:.8rem 1.8rem;border-radius:12px;font-weight:600;cursor:pointer;transition:.3s;display:inline-flex;align-items:center;gap:.5rem;box-shadow:var(--shadow-xl)}
+.brand-cta-button:hover{transform:translateY(-3px);box-shadow:0 20px 40px rgba(0,102,255,.25)}
 
 /* ── Product Hero (ürün detay) ───────────────────────── */
 .breadcrumb{background:var(--bg-primary);border-bottom:1px solid var(--border)}

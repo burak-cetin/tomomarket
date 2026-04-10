@@ -5,12 +5,12 @@ $depth = '../';
 $currentPage = '';
 $seoTitle = 'Hakkımızda | TomografiMarket';
 $seoDesc  = 'TomografiMarket, dental tomografi ve görüntüleme cihazları alanında Türkiye\'nin güvenilir çözüm ortağı. Misyon, vizyon ve ekibimiz hakkında bilgi alın.';
-$canonical = SITE_URL . '/sayfalar/hakkimizda.php';
+$canonical = SITE_URL . '/sayfalar/hakkimizda';
 require __DIR__ . '/../includes/header.php';
 ?>
 <meta name="base-depth" content="../">
 <div class="breadcrumb"><div class="breadcrumb-container">
-  <a href="../index.php">Ana Sayfa</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Hakkımızda</span>
+  <a href="../">Ana Sayfa</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Hakkımızda</span>
 </div></div>
 
 <section style="background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;padding:4rem 5%;text-align:center">
@@ -24,10 +24,10 @@ require __DIR__ . '/../includes/header.php';
     <div class="admin-card">
       <h2 style="font-family:'Space Grotesk',sans-serif;font-size:1.5rem;margin-bottom:1rem">Biz Kimiz?</h2>
       <p style="color:var(--text-secondary);line-height:1.8">
-        TomografiMarket, dental tomografi ve görüntüleme teknolojileri alanında uzmanlaşmış bir Türkiye merkezli dağıtım ve danışmanlık platformudur. LargeV, HDXWILL, Vatech, Planmeca, Sirona, Morita ve daha birçok dünya markasının yetkili distribütörü olarak faaliyet göstermekteyiz.
+        TomografiMarket, dental tomografi ve görüntüleme teknolojileri alanında uzmanlaşmış bağımsız bir Türkiye merkezli karşılaştırma ve bilgilendirme platformudur. LargeV, HDXWILL, Vatech, Planmeca, Sirona, Morita ve daha birçok dünya markasının ürünlerini tarafsız bir bakış açısıyla inceliyor ve karşılaştırıyoruz.
       </p>
       <p style="color:var(--text-secondary);line-height:1.8;margin-top:1rem">
-        Diş hekimlerine ve klinik sahiplerine en güncel dental görüntüleme teknolojilerini tanıtmak, doğru cihaz seçiminde yol göstermek ve satış sonrası teknik destek sağlamak temel misyonumuzdur.
+        Diş hekimlerine ve klinik sahiplerine en güncel dental görüntüleme teknolojilerini tanıtmak, doğru cihaz seçiminde yol göstermek ve bilgilendirme sağlamak temel misyonumuzdur.
       </p>
     </div>
 
@@ -35,7 +35,7 @@ require __DIR__ . '/../includes/header.php';
       <div class="feature-item"><div class="feature-icon">🎯</div><h4>Misyonumuz</h4><p>Diş hekimlerine en kaliteli görüntüleme teknolojisini en uygun koşullarda sunmak.</p></div>
       <div class="feature-item"><div class="feature-icon">🔭</div><h4>Vizyonumuz</h4><p>Türkiye'nin dental görüntüleme alanında birinci referans platformu olmak.</p></div>
       <div class="feature-item"><div class="feature-icon">🏆</div><h4>Kalite Güvencesi</h4><p>Tüm ürünler uluslararası kalite standartlarına (CE, ISO) uyumludur.</p></div>
-      <div class="feature-item"><div class="feature-icon">🤝</div><h4>Satış Sonrası Destek</h4><p>Cihaz kurulumu, kullanıcı eğitimi ve teknik servis desteği sağlıyoruz.</p></div>
+      <div class="feature-item"><div class="feature-icon">🤝</div><h4>Tarafsız Danışmanlık</h4><p>Marka bağımsız, tarafsız karşılaştırma ve danışmanlık hizmeti sunuyoruz.</p></div>
     </div>
 
     <div class="admin-card" style="text-align:center">

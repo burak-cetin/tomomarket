@@ -29,7 +29,7 @@ require __DIR__ . '/../includes/header.php';
   </div>
   <?php else: ?>
     <?php foreach ($posts as $post): ?>
-    <a href="<?= h($post['slug']) ?>.php" class="blog-card">
+    <a href="<?= h($post['slug']) ?>" class="blog-card">
       <div class="blog-card-image">
         <?php if ($post['cover_image']): ?>
         <img src="../<?= h($post['cover_image']) ?>" alt="<?= h($post['title']) ?>" loading="lazy">
@@ -59,7 +59,7 @@ require __DIR__ . '/../includes/header.php';
   <p>Blog rehberlerimizi okudunuz, şimdi uzmanlarımıza sorun.</p>
   <div class="cta-buttons">
     <button class="btn-cta-white" onclick="openContactModal()">Ücretsiz Danışmanlık</button>
-    <a href="../index.php#urunler" class="btn-cta-outline">Tüm Cihazlar</a>
+    <a href="../#urunler" class="btn-cta-outline">Tüm Cihazlar</a>
   </div>
 </section>
 
