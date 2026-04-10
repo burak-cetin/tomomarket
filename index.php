@@ -186,14 +186,18 @@ renderFAQSchema($faqs);
   </div>
 </section>
 
+<?php require __DIR__ . '/includes/footer.php'; ?>
+
 <script>
-filterCards('product-search','product-brand-filter','#products-grid','.product-card');
-document.getElementById('product-type-filter')?.addEventListener('change', function() {
-  const val = this.value;
-  document.querySelectorAll('#products-grid .product-card').forEach(function(c) {
-    c.style.display = (!val || c.dataset.type === val) ? '' : 'none';
-  });
+document.addEventListener('DOMContentLoaded', function() {
+  // Arama + marka filtresi
+  filterCards('product-search','product-brand-filter','#products-grid','.product-card');
+  // Tip filtresi de ayni _filterCards'i tetiklesin
+  var typeFilter = document.getElementById('product-type-filter');
+  if (typeFilter) {
+    typeFilter.addEventListener('change', function() {
+      if (window._filterCards) window._filterCards();
+    });
+  }
 });
 </script>
-
-<?php require __DIR__ . '/includes/footer.php'; ?>

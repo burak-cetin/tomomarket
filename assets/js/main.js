@@ -114,23 +114,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ── Filter (İkinci El & Ürünler) ─────────────────────
 function filterCards(searchId, brandId, containerSel, cardSel) {
-  const searchEl = document.getElementById(searchId);
-  const brandEl  = document.getElementById(brandId);
+  var searchEl = document.getElementById(searchId);
+  var brandEl  = document.getElementById(brandId);
   if (!searchEl && !brandEl) return;
 
-  function doFilter() {
-    const q = searchEl?.value.toLowerCase() || '';
-    const b = brandEl?.value.toLowerCase() || '';
+  // Dis kapsam: type filtresi varsa onu da hesaba kat
+  window._filterCards = function() {
+    var q = (searchEl ? searchEl.value : '').toLowerCase();
+    var b = (brandEl ? brandEl.value : '').toLowerCase();
+    var typeEl = document.getElementById('product-type-filter') || document.getElementById('sh-condition');
+    var t = typeEl ? typeEl.value.toLowerCase() : '';
     document.querySelectorAll(containerSel + ' ' + cardSel).forEach(function(card) {
-      const text  = card.textContent.toLowerCase();
-      const brand = (card.dataset.brand || '').toLowerCase();
-      const show  = (!q || text.includes(q)) && (!b || brand === b || b === '');
+      var text  = card.textContent.toLowerCase();
+      var brand = (card.dataset.brand || '').toLowerCase();
+      var type  = (card.dataset.type || '').toLowerCase();
+      var show  = (!q || text.includes(q)) && (!b || brand === b) && (!t || type === t);
       card.style.display = show ? '' : 'none';
     });
-  }
+  };
 
-  searchEl?.addEventListener('input', doFilter);
-  brandEl?.addEventListener('change', doFilter);
+  if (searchEl) searchEl.addEventListener('input', window._filterCards);
+  if (brandEl) brandEl.addEventListener('change', window._filterCards);
 }
 
 // ── Comparison ────────────────────────────────────────
