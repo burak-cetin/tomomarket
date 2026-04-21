@@ -92,5 +92,6 @@ $_brands = getBrands();
 
 <!-- ═══ SCRIPTS ═══════════════════════════════════════════ -->
 <script src="<?= $_depth ?>assets/js/main.js"></script>
+<script src="<?= $_depth ?>assets/js/chatbot.js"></script>
 </body>
 </html>
